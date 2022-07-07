@@ -1,4 +1,4 @@
-****Black Box Tester****
+****Kafka Tester****
 
 Build a runnable jar
 
