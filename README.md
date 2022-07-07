@@ -6,12 +6,11 @@ Build a runnable jar
 
 To run a Test
 
-`java -jar kafka-tester-1.0.jar testInput.json`
+`java -jar kafka-tester-1.0.jar testInput.yaml`
 
 where testInput.json looks like:
 
 ```yaml
----
 ---
 cacheProducer: true
 repeat: 2
@@ -34,4 +33,4 @@ kafkaTests:
   - description: Greg Test 2
     topic: greg-test2
     payload: test message
-```# kafka-tester
+```
