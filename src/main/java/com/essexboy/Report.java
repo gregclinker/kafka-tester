@@ -3,6 +3,9 @@ package com.essexboy;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -42,7 +45,8 @@ public class Report {
 
     public void report() throws IOException {
         finishTime = Calendar.getInstance().getTime();
-        ObjectMapper objectMapper = new ObjectMapper();
+        //ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER));
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd:HH:mm");
         objectMapper.setDateFormat(df);
         System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(this));
