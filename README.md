@@ -8,7 +8,7 @@ To run a Test
 
 `java -jar kafka-tester-1.0.jar testInput.yaml`
 
-where testInput.json looks like:
+where testInput.yaml looks like:
 
 ```yaml
 ---
