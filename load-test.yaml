@@ -1,11 +1,11 @@
 ---
 cacheProducer: true
-repeat: 200
-threads: 20
+repeat: 20
+threads: 2
 kafkaProperties:
   bootstrap.servers: "172.31.0.6:29092,172.31.0.7:29093,172.31.0.5:29094"
   connections.max.idle.ms: "10000"
-  request.timeout.ms": "5000"
+  request.timeout.ms": "120000"
   security.protocol: "SSL"
   ssl.truststore.location: "/home/greg/work/kafka-heartbeat/secrets/kafka_truststore.jks"
   ssl.truststore.password: "confluent"
@@ -13,10 +13,14 @@ kafkaProperties:
   ssl.keystore.password: "confluent"
   ssl.key.password: "confluent"
   ssl.endpoint.identification.algorithm: " "
+  client.id: "DemoProducer"
+  key.serializer: "org.apache.kafka.common.serialization.StringSerializer"
+  value.serializer: "org.apache.kafka.common.serialization.StringSerializer"
+  acks: "1"
 kafkaTests:
   - description: Greg Test 1
     topic: greg-test1
     payload: test message
   - description: Greg Test 2
     topic: greg-test2
-    payload: test message
+    payload: __80kb

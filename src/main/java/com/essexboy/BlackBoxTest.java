@@ -54,7 +54,7 @@ public class BlackBoxTest implements Runnable {
         try {
             producer.send(new ProducerRecord<>(kafkaTest.getTopic(),
                     key,
-                    kafkaTest.getPayload() + "_" + key)).get();
+                    kafkaTest.getResolvedPayload() + "_" + key)).get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
             return new Result(kafkaTest.getDescription(), false, System.currentTimeMillis() - start);
@@ -68,9 +68,6 @@ public class BlackBoxTest implements Runnable {
 
     private KafkaProducer<Object, Object> getProducer() {
         final Properties kafkaProperties = config.getKafkaProperties();
-        kafkaProperties.put("client.id", "DemoProducer");
-        kafkaProperties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        kafkaProperties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         return new KafkaProducer<>(kafkaProperties);
     }
 }
