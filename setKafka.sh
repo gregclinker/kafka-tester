@@ -1,6 +1,9 @@
-export KAFKA1=172.31.0.6
-export KAFKA2=172.31.0.7
-export KAFKA3=172.31.0.5
-export ZOO1=172.31.0.4
-export ZOO2=172.31.0.2
-export ZOO3=172.31.0.3
+export KAFKA1=172.20.0.5
+export KAFKA2=172.20.0.7
+export KAFKA3=172.20.0.6
+export ZOO1=172.20.0.4
+export ZOO2=172.20.0.2
+export ZOO3=172.20.0.3
+
+echo ${KAFKA1}:9092,${KAFKA2}:9093,${KAFKA3}:9094
+echo ${KAFKA1}:29092,${KAFKA2}:29093,${KAFKA3}:29094

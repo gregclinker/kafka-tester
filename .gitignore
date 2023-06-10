@@ -10,3 +10,9 @@ target
 api-simulator.iml
 build
 .gradle
+kafka1
+kafka2
+kafka3
+*.out
+*.ods*
+run-all.sh

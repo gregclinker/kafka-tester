@@ -1,0 +1,29 @@
+---
+cacheProducer: true
+repeat: 200
+threads: 10
+kafkaProperties:
+  bootstrap.servers: "172.20.0.5:29092,172.20.0.7:29093,172.20.0.6:29094"
+  connections.max.idle.ms: "10000"
+  request.timeout.ms": "120000"
+  security.protocol: "SSL"
+  ssl.truststore.location: "/home/greg/work/kafka-heartbeat/secrets/kafka_truststore.jks"
+  ssl.truststore.password: "confluent"
+  ssl.keystore.location: "/home/greg/work/kafka-heartbeat/secrets/kafka_keystore.jks"
+  ssl.keystore.password: "confluent"
+  ssl.key.password: "confluent"
+  ssl.endpoint.identification.algorithm: " "
+  client.id: "DemoProducer"
+  key.serializer: "org.apache.kafka.common.serialization.StringSerializer"
+  value.serializer: "org.apache.kafka.common.serialization.StringSerializer"
+  acks: "all"
+kafkaTests:
+  - description: test-topic1, 50kb, acks=all, SSL
+    topic: test-topic1
+    payload: __50kb
+  - description: test-topic2, 50kb, acks=all, SSL
+    topic: test-topic2
+    payload: __50kb
+  - description: test-topic3, 50kb, acks=all, SSL
+    topic: test-topic3
+    payload: __50kb

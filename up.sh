@@ -1,4 +1,4 @@
-export KAFKA_DATA=/home/greg/work/kafka-heartbeat
+export KAFKA_DATA=/home/greg/work/kafka-tester
 docker-compose up -d
 #
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kafka1  | awk '{print "export KAFKA1="$1}' > setKafka.sh

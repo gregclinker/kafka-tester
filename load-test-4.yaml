@@ -1,9 +1,9 @@
 ---
 cacheProducer: true
-repeat: 20
-threads: 2
+repeat: 200
+threads: 10
 kafkaProperties:
-  bootstrap.servers: "172.31.0.6:29092,172.31.0.7:29093,172.31.0.5:29094"
+  bootstrap.servers: "172.20.0.5:29092,172.20.0.7:29093,172.20.0.6:29094"
   connections.max.idle.ms: "10000"
   request.timeout.ms": "120000"
   security.protocol: "SSL"
@@ -16,11 +16,14 @@ kafkaProperties:
   client.id: "DemoProducer"
   key.serializer: "org.apache.kafka.common.serialization.StringSerializer"
   value.serializer: "org.apache.kafka.common.serialization.StringSerializer"
-  acks: "1"
+  acks: "0"
 kafkaTests:
-  - description: Greg Test 1
-    topic: greg-test1
-    payload: test message
-  - description: Greg Test 2
-    topic: greg-test2
-    payload: __80kb
+  - description: test-topic1, 50kb, acks=0, SSL
+    topic: test-topic1
+    payload: __50kb
+  - description: test-topic2, 50kb, acks=0, SSL
+    topic: test-topic2
+    payload: __50kb
+  - description: test-topic3, 50kb, acks=0, SSL
+    topic: test-topic3
+    payload: __50kb
