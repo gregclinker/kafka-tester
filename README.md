@@ -96,3 +96,18 @@ results:
     p99: "98ms"
     p90: "98ms"
 ```
+Run a Kafka Local Cluster in Docker Compose
+
+```shell script
+# run docker compose
+./up.sh
+
+# sources some key Kafka envs
+. setKafka.sh
+
+# create test topics
+./create-test-topics.sh
+
+# run all the tests and output
+./run-all.sh
+```
