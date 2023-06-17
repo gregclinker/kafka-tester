@@ -109,7 +109,7 @@ results:
     p99: "142ms"
     p90: "47ms"
 ```
-Run a Kafka Local Cluster in Docker Compose
+Run a Local Kafka Cluster in Docker Compose
 
 ```shell script
 # run docker compose
