@@ -44,63 +44,70 @@ kafkaTests:
 Output looks like this
 
 ```yaml
-startTime: "2022-07-07:23:42"
-finishTime: "2022-07-07:23:42"
+startTime: "2023-06-17:07:55"
+finishTime: "2023-06-17:07:56"
 config:
   cacheProducer: true
-  repeat: 2
-  threads: 2
+  repeat: 200
+  threads: 10
   kafkaProperties:
-    ssl.keystore.location: "/home/greg/work/kafka-heartbeat/secrets/kafka_keystore.jks"
-    bootstrap.servers: "172.31.0.6:29092,172.31.0.7:29093,172.31.0.5:29094"
-    request.timeout.ms": "5000"
-    security.protocol: "SSL"
-    ssl.truststore.location: "/home/greg/work/kafka-heartbeat/secrets/kafka_truststore.jks"
-    ssl.keystore.password: "confluent"
+    bootstrap.servers: "172.18.0.7:29092,172.18.0.6:29093,172.18.0.5:29094"
+    key.serializer: "org.apache.kafka.common.serialization.StringSerializer"
     ssl.key.password: "confluent"
     connections.max.idle.ms: "10000"
     ssl.truststore.password: "confluent"
     ssl.endpoint.identification.algorithm: " "
+    client.id: "DemoProducer"
+    acks: "all"
+    ssl.keystore.location: "/home/greg/work/kafka-heartbeat/secrets/kafka_keystore.jks"
+    request.timeout.ms": "120000"
+    security.protocol: "SSL"
+    ssl.truststore.location: "/home/greg/work/kafka-heartbeat/secrets/kafka_truststore.jks"
+    value.serializer: "org.apache.kafka.common.serialization.StringSerializer"
+    ssl.keystore.password: "confluent"
   kafkaTests:
-  - description: "Greg Test 1"
-    topic: "greg-test1"
-    payload: "test message"
-  - description: "Greg Test 2"
-    topic: "greg-test2"
-    payload: "test message"
+  - description: "test-topic1, 200kb, acks=all, SSL"
+    topic: "test-topic1"
+    payload: "__200kb"
+  - description: "test-topic2, 200kb, acks=all, SSL"
+    topic: "test-topic2"
+    payload: "__200kb"
+  - description: "test-topic3, 200kb, acks=all, SSL"
+    topic: "test-topic3"
+    payload: "__200kb"
 results:
-  Greg Test 1:
-    count: 3
+  test-topic2, 200kb, acks=all, SSL:
+    count: 2000
     failed: 0
-    passed: 3
-    tps: "4tps"
-    min: "4ms"
-    max: "719ms"
-    average: "243ms"
+    passed: 2000
+    tps: "37tps"
+    min: "3ms"
+    max: "1016ms"
+    average: "26ms"
     greaterThan1000ms: "0%"
-    lessThan1000ms: "100%"
-    lessThan500ms: "66%"
-    lessThan100ms: "66%"
-    lessThan50ms: "66%"
-    lessThan10ms: "66%"
-    p99: "719ms"
-    p90: "719ms"
-  Greg Test 2:
-    count: 4
+    lessThan1000ms: "99%"
+    lessThan500ms: "99%"
+    lessThan100ms: "98%"
+    lessThan50ms: "94%"
+    lessThan10ms: "16%"
+    p99: "207ms"
+    p90: "38ms"
+  test-topic3, 200kb, acks=all, SSL:
+    count: 2000
     failed: 0
-    passed: 4
-    tps: "23tps"
-    min: "4ms"
-    max: "98ms"
-    average: "43ms"
+    passed: 2000
+    tps: "30tps"
+    min: "3ms"
+    max: "1023ms"
+    average: "33ms"
     greaterThan1000ms: "0%"
-    lessThan1000ms: "100%"
-    lessThan500ms: "100%"
-    lessThan100ms: "100%"
-    lessThan50ms: "50%"
-    lessThan10ms: "50%"
-    p99: "98ms"
-    p90: "98ms"
+    lessThan1000ms: "99%"
+    lessThan500ms: "99%"
+    lessThan100ms: "98%"
+    lessThan50ms: "91%"
+    lessThan10ms: "2%"
+    p99: "142ms"
+    p90: "47ms"
 ```
 Run a Kafka Local Cluster in Docker Compose
 
