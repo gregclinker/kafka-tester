@@ -3,7 +3,7 @@ cacheProducer: true
 repeat: 200
 threads: 10
 kafkaProperties:
-  bootstrap.servers: "172.18.0.7:9092,172.18.0.6:9093,172.18.0.5:9094"
+  bootstrap.servers: "172.18.0.5:9092,172.18.0.7:9093,172.18.0.6:9094"
   connections.max.idle.ms: "10000"
   request.timeout.ms": "120000"
   client.id: "DemoProducer"
