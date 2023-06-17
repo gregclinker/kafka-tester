@@ -13,12 +13,12 @@ where testInput.yaml looks like:
 ```yaml
 ---
 cacheProducer: true
-repeat: 2
-threads: 2
+repeat: 200
+threads: 10
 kafkaProperties:
-  bootstrap.servers: "172.31.0.6:29092,172.31.0.7:29093,172.31.0.5:29094"
+  bootstrap.servers: "172.18.0.7:29092,172.18.0.6:29093,172.18.0.5:29094"
   connections.max.idle.ms: "10000"
-  request.timeout.ms": "5000"
+  request.timeout.ms": "120000"
   security.protocol: "SSL"
   ssl.truststore.location: "/home/greg/work/kafka-heartbeat/secrets/kafka_truststore.jks"
   ssl.truststore.password: "confluent"
@@ -26,13 +26,19 @@ kafkaProperties:
   ssl.keystore.password: "confluent"
   ssl.key.password: "confluent"
   ssl.endpoint.identification.algorithm: " "
+  client.id: "DemoProducer"
+  key.serializer: "org.apache.kafka.common.serialization.StringSerializer"
+  value.serializer: "org.apache.kafka.common.serialization.StringSerializer"
+  acks: "all"
 kafkaTests:
-  - description: Greg Test 1
-    topic: greg-test1
-    payload: test message
-  - description: Greg Test 2
-    topic: greg-test2
-    payload: test message
+  - description: test-topic2, 200kb, acks=all, SSL
+    topic: test-topic2
+    # create random text message
+    payload: __200kb
+  - description: test-topic3, 200kb, acks=all, SSL
+    topic: test-topic3
+    # create random text message
+    payload: __200kb
 ```
 
 Output looks like this
